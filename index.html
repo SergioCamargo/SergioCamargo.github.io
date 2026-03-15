@@ -3,155 +3,408 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sergio Alejandro Camargo Vargas — PhD Geotecnologías · Análisis de Datos Espaciales, Geofísica y Desarrollo SIG">
-  <meta property="og:title" content="Sergio Camargo — Geoespacial & Geofísica">
+  <meta name="description" content="Sergio Alejandro Camargo Vargas — PhD Geotecnologías · Geofísica, Datos Espaciales y Desarrollo SIG">
+  <meta property="og:title" content="Sergio Camargo — Geofísico & Geoespacial">
   <meta property="og:description" content="PhD Geotecnologías (U. Salamanca) · Ing. Catastral y Geodesta · MSc Geofísica · MSc TIG">
   <meta property="og:type" content="website">
   <title>Sergio Alejandro Camargo Vargas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* ── SCREEN THEME: teal-petroleum dark ── */
     :root {
-      --bg:#080c10;--surface:#0d1318;--surface2:#111920;--border:#1e2d3a;
-      --accent:#00e5c0;--accent2:#ff6b35;--accent3:#4a9eff;
-      --text:#c8d8e4;--text-dim:#5a7a8a;--text-bright:#eaf4fb;
-      --grid:rgba(0,229,192,0.04);
-      --mono:'Space Mono',monospace;--display:'Syne',sans-serif;
+      --bg: #0d1f24;
+      --surface: #122830;
+      --surface2: #163340;
+      --border: #1f4050;
+      --accent: #00e5c0;
+      --accent2: #ff8c5a;
+      --accent3: #5bb8ff;
+      --text: #cde6ef;
+      --text-dim: #6a9aaa;
+      --text-bright: #edfaff;
+      --grid: rgba(0,229,192,0.03);
+      --sans: 'DM Sans', sans-serif;
+      --display: 'Outfit', sans-serif;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13px;line-height:1.7;overflow-x:hidden;}
-    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-    body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(0,229,192,0.05) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 90%,rgba(74,158,255,0.04) 0%,transparent 60%);pointer-events:none;z-index:0;}
-    .container{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px;}
 
-    /* TOP BAR */
-    .top-bar{position:relative;z-index:200;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 0;}
-    .top-bar-inner{display:flex;justify-content:flex-end;align-items:center;gap:12px;}
-    .lang-toggle{display:flex;border:1px solid var(--border);overflow:hidden;}
-    .lang-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:6px 14px;background:transparent;color:var(--text-dim);border:none;cursor:pointer;transition:all .2s;}
-    .lang-btn.active{background:var(--accent);color:var(--bg);font-weight:700;}
-    .lang-btn:hover:not(.active){color:var(--accent);}
-    .pdf-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:6px 16px;background:transparent;color:var(--accent2);border:1px solid rgba(255,107,53,.4);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;text-transform:uppercase;}
-    .pdf-btn:hover{background:rgba(255,107,53,.1);border-color:var(--accent2);}
-    .pdf-btn svg{width:13px;height:13px;}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.75; overflow-x: hidden; }
 
-    /* HEADER */
-    header{position:relative;padding:60px 0 0;border-bottom:1px solid var(--border);overflow:hidden;}
-    .header-inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-bottom:40px;}
-    .coord-tag{font-size:11px;color:var(--accent);letter-spacing:.1em;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-    .coord-tag::before{content:'';display:inline-block;width:6px;height:6px;border:1px solid var(--accent);border-radius:50%;animation:pulse 2s infinite;}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
-    h1{font-family:var(--display);font-size:clamp(28px,5vw,52px);font-weight:800;color:var(--text-bright);line-height:1.05;letter-spacing:-.02em;margin-bottom:12px;}
-    h1 span{color:var(--accent);}
-    .tagline{font-family:var(--display);font-size:14px;font-weight:600;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;}
-    .header-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
-    .badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--text-dim);background:var(--surface);}
-    .badge.active{border-color:var(--accent);color:var(--accent);background:rgba(0,229,192,.06);}
-    .header-actions{display:flex;gap:12px;flex-wrap:wrap;}
-    .btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;text-decoration:none;border:1px solid;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
-    .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700;}
-    .btn-primary:hover{background:transparent;color:var(--accent);}
-    .btn-ghost{background:transparent;border-color:var(--border);color:var(--text-dim);}
-    .btn-ghost:hover{border-color:var(--accent3);color:var(--accent3);}
-    .header-photo{width:160px;height:180px;object-fit:cover;border:1px solid var(--border);filter:grayscale(20%) contrast(1.05);}
-    .photo-wrap{position:relative;flex-shrink:0;}
-    .photo-wrap::before{content:'';position:absolute;inset:-4px;border:1px solid var(--accent);opacity:.3;pointer-events:none;}
-    .photo-wrap::after{content:'SIG · GPS · ERT';position:absolute;bottom:-20px;right:0;font-size:9px;color:var(--accent);letter-spacing:.15em;}
-    .social-links{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
-    .social-links a{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;display:flex;align-items:center;gap:6px;}
-    .social-links a:hover{color:var(--accent);}
-    .social-links a svg{width:14px;height:14px;}
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 40px 40px; pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 15% 10%, rgba(0,229,192,0.05) 0%, transparent 55%),
+                  radial-gradient(ellipse 60% 70% at 85% 90%, rgba(91,184,255,0.04) 0%, transparent 55%);
+      pointer-events: none; z-index: 0;
+    }
 
-    /* NAV */
-    nav{position:sticky;top:0;background:rgba(8,12,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;}
-    .nav-inner{display:flex;overflow-x:auto;}
-    nav a{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;}
-    nav a:hover,nav a.nav-active{color:var(--accent);border-bottom-color:var(--accent);}
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    /* LAYOUT */
-    main{display:grid;grid-template-columns:1fr 300px;position:relative;z-index:1;}
-    .primary{border-right:1px solid var(--border);}
-    section,aside{padding:40px;border-bottom:1px solid var(--border);}
-    .section-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
-    .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
-    h2{font-family:var(--display);font-size:22px;font-weight:800;color:var(--text-bright);margin-bottom:20px;letter-spacing:-.01em;}
-    .about-text{color:var(--text);line-height:1.8;margin-bottom:14px;}
-    .expertise-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-    .chip{font-size:10px;padding:5px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);letter-spacing:.05em;}
-    .chip.geo{border-color:rgba(0,229,192,.3);color:var(--accent);}
+    /* ── TOP BAR ── */
+    .top-bar { position: relative; z-index: 200; background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 0; }
+    .top-bar-inner { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+    .lang-toggle { display: flex; border: 1px solid var(--border); overflow: hidden; }
+    .lang-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .08em; padding: 6px 14px; background: transparent; color: var(--text-dim); border: none; cursor: pointer; transition: all .2s; }
+    .lang-btn.active { background: var(--accent); color: var(--bg); font-weight: 700; }
+    .lang-btn:hover:not(.active) { color: var(--accent); }
+    .pdf-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .06em; padding: 6px 16px; background: transparent; color: var(--accent2); border: 1px solid rgba(255,140,90,.4); cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
+    .pdf-btn:hover { background: rgba(255,140,90,.1); border-color: var(--accent2); }
+    .pdf-btn svg { width: 13px; height: 13px; }
 
-    /* TIMELINE */
-    .job{padding:24px 0;border-bottom:1px solid var(--border);position:relative;padding-left:20px;}
-    .job::before{content:'';position:absolute;left:0;top:32px;width:4px;height:4px;background:var(--accent);border-radius:50%;}
-    .job:last-child{border-bottom:none;}
-    .job-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:4px;flex-wrap:wrap;}
-    .job-title{font-family:var(--display);font-size:14px;font-weight:600;color:var(--text-bright);}
-    .job-period{font-size:10px;color:var(--accent2);letter-spacing:.08em;white-space:nowrap;padding:2px 8px;border:1px solid rgba(255,107,53,.3);background:rgba(255,107,53,.05);}
-    .job-company{font-size:11px;color:var(--accent3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
-    .job-desc{color:var(--text-dim);font-size:12px;line-height:1.7;}
-    .job-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-    .job-tag{font-size:9px;padding:2px 8px;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);letter-spacing:.06em;}
+    /* ── HEADER ── */
+    header { position: relative; padding: 56px 0 0; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .header-inner { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; padding-bottom: 40px; }
 
-    /* SIDEBAR COMPONENTS */
-    .skill-group{margin-bottom:28px;}
-    .skill-group-title{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-    .skill-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(30,45,58,.5);font-size:11px;}
-    .skill-item:last-child{border-bottom:none;}
-    .skill-name{color:var(--text);}
-    .skill-level{font-size:9px;letter-spacing:.08em;text-transform:uppercase;}
-    .level-expert{color:var(--accent);}.level-pro{color:var(--accent3);}.level-mid{color:var(--text-dim);}
-    .edu-item{padding:16px 0;border-bottom:1px solid var(--border);}
-    .edu-item:last-child{border-bottom:none;}
-    .edu-degree{font-family:var(--display);font-size:13px;font-weight:600;color:var(--text-bright);margin-bottom:4px;}
-    .edu-uni{font-size:11px;color:var(--accent3);letter-spacing:.05em;}
-    .edu-year{font-size:10px;color:var(--text-dim);margin-top:2px;}
-    .award-item{padding:12px 0;border-bottom:1px solid var(--border);font-size:11px;}
-    .award-item:last-child{border-bottom:none;}
-    .award-title{color:var(--text-bright);margin-bottom:2px;}
-    .award-detail{color:var(--text-dim);font-size:10px;}
-    .lang-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
-    .lang-item:last-child{border-bottom:none;}
-    .lang-name{font-size:12px;color:var(--text-bright);}
-    .lang-stars{color:var(--accent);font-size:10px;letter-spacing:2px;}
-    .course-item{padding:8px 0;border-bottom:1px solid var(--border);font-size:11px;color:var(--text-dim);display:flex;gap:8px;align-items:flex-start;}
-    .course-item:last-child{border-bottom:none;}
-    .course-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:6px;}
+    .coord-tag { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: .1em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .coord-tag::before { content: ''; display: inline-block; width: 6px; height: 6px; border: 1px solid var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.5);} }
 
-    footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--text-dim);letter-spacing:.08em;}
-    footer span{color:var(--accent);}
+    h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 54px); font-weight: 800; color: var(--text-bright); line-height: 1.0; letter-spacing: -.02em; margin-bottom: 10px; }
+    h1 span { color: var(--accent); }
+    .tagline { font-family: var(--display); font-size: 13px; font-weight: 600; color: var(--text-dim); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 24px; }
 
-    /* PRINT */
+    .header-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .badge { font-size: 10px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); color: var(--text-dim); background: var(--surface); }
+    .badge.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,192,.06); }
+
+    .social-links { display: flex; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+    .social-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; transition: color .2s; display: flex; align-items: center; gap: 6px; }
+    .social-links a:hover { color: var(--accent); }
+    .social-links a svg { width: 13px; height: 13px; }
+
+    .header-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 10px 20px; text-decoration: none; border: 1px solid; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--text-dim); }
+    .btn-ghost:hover { border-color: var(--accent3); color: var(--accent3); }
+
+    .header-photo { width: 155px; height: 175px; object-fit: cover; border: 1px solid var(--border); filter: grayscale(15%) contrast(1.05); }
+    .photo-wrap { position: relative; flex-shrink: 0; }
+    .photo-wrap::before { content: ''; position: absolute; inset: -4px; border: 1px solid var(--accent); opacity: .25; pointer-events: none; }
+    .photo-wrap::after { content: 'SIG · GPS · ERT'; position: absolute; bottom: -20px; right: 0; font-size: 9px; color: var(--accent); letter-spacing: .15em; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; background: rgba(13,31,36,.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
+    .nav-inner { display: flex; overflow-x: auto; }
+    nav a { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; padding: 13px 20px; white-space: nowrap; border-bottom: 2px solid transparent; transition: all .2s; }
+    nav a:hover, nav a.nav-active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    main { display: grid; grid-template-columns: 1fr 300px; position: relative; z-index: 1; }
+    .primary { border-right: 1px solid var(--border); }
+    section, aside { padding: 36px 40px; border-bottom: 1px solid var(--border); }
+
+    .section-label { font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    h2 { font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--text-bright); margin-bottom: 18px; letter-spacing: -.01em; }
+
+    .about-text { color: var(--text); line-height: 1.85; margin-bottom: 12px; font-size: 14px; }
+    .expertise-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .chip { font-size: 11px; font-weight: 500; padding: 4px 11px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); }
+    .chip.geo { border-color: rgba(0,229,192,.3); color: var(--accent); }
+
+    /* ── TIMELINE ── */
+    .job { padding: 20px 0; border-bottom: 1px solid var(--border); position: relative; padding-left: 18px; }
+    .job::before { content: ''; position: absolute; left: 0; top: 28px; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+    .job:last-child { border-bottom: none; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 3px; flex-wrap: wrap; }
+    .job-title { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--text-bright); }
+    .job-period { font-size: 11px; font-weight: 500; color: var(--accent2); white-space: nowrap; padding: 2px 8px; border: 1px solid rgba(255,140,90,.3); background: rgba(255,140,90,.05); }
+    .job-company { font-size: 11px; font-weight: 600; color: var(--accent3); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
+    .job-desc { color: var(--text-dim); font-size: 13px; line-height: 1.7; }
+    .job-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+    .job-tag { font-size: 10px; padding: 2px 8px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim); }
+
+    /* ── SIDEBAR ── */
+    .skill-group { margin-bottom: 24px; }
+    .skill-group-title { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
+    .skill-item { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(31,64,80,.5); font-size: 13px; }
+    .skill-item:last-child { border-bottom: none; }
+    .skill-name { color: var(--text); font-weight: 400; }
+    .skill-level { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+    .level-expert { color: var(--accent); } .level-pro { color: var(--accent3); } .level-mid { color: var(--text-dim); }
+
+    .edu-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-degree { font-family: var(--display); font-size: 13px; font-weight: 700; color: var(--text-bright); margin-bottom: 3px; }
+    .edu-uni { font-size: 12px; font-weight: 500; color: var(--accent3); }
+    .edu-year { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+    .award-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .award-item:last-child { border-bottom: none; }
+    .award-title { color: var(--text-bright); font-weight: 600; margin-bottom: 2px; }
+    .award-detail { color: var(--text-dim); font-size: 11px; }
+
+    .lang-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .lang-item:last-child { border-bottom: none; }
+    .lang-name { font-size: 13px; font-weight: 500; color: var(--text-bright); }
+    .lang-stars { color: var(--accent); font-size: 11px; letter-spacing: 2px; }
+
+    .course-item { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text-dim); display: flex; gap: 8px; align-items: flex-start; }
+    .course-item:last-child { border-bottom: none; }
+    .course-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-dim); letter-spacing: .06em; }
+    footer span { color: var(--accent); }
+
+    /* ══════════════════════════════════════════
+       PRINT / PDF — layout tipo imagen referencia
+       Sidebar oscuro izquierda + contenido blanco derecha
+       ══════════════════════════════════════════ */
     @media print {
-      .top-bar,nav{display:none!important;}
-      body::before,body::after{display:none;}
-      body{background:#fff!important;color:#111!important;font-size:11px;}
-      header{background:#fff;padding:20px 0 0;}
-      :root{--bg:#fff;--surface:#f5f5f5;--surface2:#efefef;--border:#ddd;--accent:#007a6a;--accent2:#c44f1f;--accent3:#1a5daa;--text:#333;--text-dim:#555;--text-bright:#000;}
-      main{grid-template-columns:1fr 250px;}
-      section,aside{padding:16px;}
-      .photo-wrap{display:none;}
-      .job,.edu-item,.award-item{break-inside:avoid;}
-      h1{font-size:26px;}
-      .tagline{font-size:11px;}
-      .coord-tag::before{display:none;}
-      footer{padding:12px 16px;}
-      .chip{border-color:#ccc;color:#555;}
+      @page { size: A4; margin: 0; }
+
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      /* ocultar elementos de UI */
+      .top-bar, nav, footer,
+      .coord-tag::before,
+      .header-actions,
+      .social-links,
+      .header-badges,
+      .photo-wrap::after,
+      body::before, body::after { display: none !important; }
+
+      body {
+        background: #fff !important;
+        font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 9pt;
+        line-height: 1.5;
+        color: #222;
+        margin: 0; padding: 0;
+      }
+
+      /* ── ESTRUCTURA: sidebar izquierda oscura + contenido derecha ── */
+      .container { max-width: 100%; padding: 0; margin: 0; }
+
+      /* El header se convierte en la cabecera del PDF */
+      header {
+        display: grid !important;
+        grid-template-columns: 210px 1fr !important;
+        min-height: 130px;
+        padding: 0 !important;
+        border: none !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+      }
+
+      /* Lado izquierdo del header: bloque oscuro con foto y nombre */
+      .header-inner {
+        display: contents !important;
+      }
+
+      /* La foto va en la columna izquierda oscura */
+      .photo-wrap {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: #2b3640 !important;
+        padding: 20px 16px !important;
+      }
+      .photo-wrap::before { display: none !important; }
+      .header-photo {
+        width: 80px !important; height: 90px !important;
+        border-radius: 50% !important;
+        border: 2px solid #00c4a7 !important;
+        object-fit: cover;
+        filter: none !important;
+        display: block !important;
+      }
+
+      /* El bloque de texto del header va a la derecha */
+      .header-inner > div:first-child {
+        padding: 16px 20px 12px !important;
+        background: #fff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+      }
+
+      .coord-tag {
+        font-size: 7.5pt !important;
+        color: #2b3640 !important;
+        letter-spacing: .05em !important;
+        margin-bottom: 4px !important;
+      }
+
+      h1 {
+        font-family: 'Outfit','DM Sans',Arial,sans-serif !important;
+        font-size: 22pt !important;
+        font-weight: 800 !important;
+        color: #1a2830 !important;
+        line-height: 1.05 !important;
+        letter-spacing: -.02em !important;
+        margin-bottom: 3px !important;
+      }
+      h1 span { color: #007a6a !important; }
+
+      .tagline {
+        font-size: 7.5pt !important;
+        font-weight: 600 !important;
+        color: #556b72 !important;
+        letter-spacing: .1em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 6px !important;
+      }
+
+      /* Info de contacto en header derecho */
+      .social-links {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px 16px !important;
+        margin-bottom: 0 !important;
+      }
+      .social-links a {
+        font-size: 7.5pt !important;
+        color: #334 !important;
+        text-decoration: none !important;
+        letter-spacing: 0 !important;
+        text-transform: none !important;
+      }
+      .social-links a svg { display: none !important; }
+
+      /* ── CUERPO PRINCIPAL: 2 columnas sidebar + contenido ── */
+      .container + * { display: none; }
+
+      /* El <main> usa grid: sidebar 210px | contenido resto */
+      main {
+        display: grid !important;
+        grid-template-columns: 210px 1fr !important;
+        width: 100% !important;
+        min-height: calc(297mm - 130px);
+      }
+
+      /* SIDEBAR (columna derecha del HTML = izquierda del PDF) */
+      .sidebar {
+        background: #2b3640 !important;
+        color: #c8dde4 !important;
+        padding: 0 !important;
+        order: -1 !important; /* va a la izquierda */
+      }
+
+      .sidebar aside {
+        padding: 14px 16px !important;
+        border-bottom: 1px solid rgba(255,255,255,.08) !important;
+        background: transparent !important;
+      }
+
+      .sidebar h2 {
+        font-family: 'Outfit','DM Sans',Arial,sans-serif !important;
+        font-size: 8pt !important;
+        font-weight: 800 !important;
+        color: #fff !important;
+        letter-spacing: .12em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 4px !important;
+        border-bottom: 1px solid rgba(0,229,192,.35) !important;
+      }
+      .sidebar .section-label { display: none !important; }
+
+      .edu-degree { font-size: 8pt !important; font-weight: 700 !important; color: #edfaff !important; margin-bottom: 1px !important; }
+      .edu-uni { font-size: 7.5pt !important; color: #7ecfdf !important; }
+      .edu-year { font-size: 7pt !important; color: #8aa8b0 !important; }
+      .edu-item { padding: 6px 0 !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+
+      .skill-group { margin-bottom: 10px !important; }
+      .skill-group-title { font-size: 7pt !important; color: #00c4a7 !important; letter-spacing: .1em !important; margin-bottom: 5px !important; border-bottom: 1px solid rgba(0,196,167,.2) !important; padding-bottom: 3px !important; }
+      .skill-item { font-size: 7.5pt !important; padding: 3px 0 !important; border-bottom: 1px solid rgba(255,255,255,.05) !important; color: #c8dde4 !important; }
+      .skill-name { color: #c8dde4 !important; }
+      .level-expert { color: #00c4a7 !important; font-size: 7pt !important; }
+      .level-pro { color: #7ecfdf !important; font-size: 7pt !important; }
+      .level-mid { color: #8aa8b0 !important; font-size: 7pt !important; }
+
+      .award-item { padding: 5px 0 !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+      .award-title { font-size: 7.5pt !important; color: #edfaff !important; font-weight: 600 !important; }
+      .award-detail { font-size: 7pt !important; color: #8aa8b0 !important; }
+
+      .lang-item { padding: 4px 0 !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+      .lang-name { font-size: 8pt !important; color: #c8dde4 !important; }
+      .lang-stars { color: #00c4a7 !important; font-size: 9pt !important; }
+
+      .course-item { font-size: 7pt !important; color: #8aa8b0 !important; padding: 3px 0 !important; border-bottom: 1px solid rgba(255,255,255,.05) !important; }
+      .course-dot { background: #00c4a7 !important; margin-top: 5px !important; }
+
+      /* Ocultar certificaciones en print para ahorrar espacio */
+      .sidebar aside:nth-child(3) { display: none !important; }
+
+      /* CONTENIDO PRINCIPAL (columna izquierda del HTML = derecha del PDF) */
+      .primary {
+        background: #fff !important;
+        border-right: none !important;
+        padding: 0 !important;
+      }
+
+      section {
+        padding: 12px 18px !important;
+        border-bottom: 1px solid #dde8ec !important;
+        background: #fff !important;
+        page-break-inside: avoid;
+      }
+
+      h2 {
+        font-family: 'Outfit','DM Sans',Arial,sans-serif !important;
+        font-size: 9pt !important;
+        font-weight: 800 !important;
+        color: #1a2830 !important;
+        letter-spacing: .1em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 4px !important;
+        border-bottom: 2px solid #1a2830 !important;
+      }
+
+      .section-label { display: none !important; }
+
+      /* About — mostrar solo como párrafo compacto */
+      #sobre-mi .expertise-chips { display: none !important; }
+      .about-text { font-size: 8pt !important; line-height: 1.5 !important; color: #333 !important; margin-bottom: 4px !important; }
+
+      /* Timeline jobs */
+      .job {
+        padding: 7px 0 7px 14px !important;
+        border-bottom: 1px solid #e5eef2 !important;
+        page-break-inside: avoid;
+      }
+      .job::before { background: #007a6a !important; width: 5px !important; height: 5px !important; top: 14px !important; }
+      .job-header { margin-bottom: 1px !important; gap: 8px !important; }
+      .job-title { font-family: 'Outfit','DM Sans',Arial,sans-serif !important; font-size: 8.5pt !important; font-weight: 700 !important; color: #1a2830 !important; }
+      .job-period { font-size: 7pt !important; color: #c44f1f !important; border: none !important; background: none !important; padding: 0 !important; font-weight: 600 !important; }
+      .job-company { font-size: 7.5pt !important; color: #1a5daa !important; margin-bottom: 3px !important; letter-spacing: .03em !important; }
+      .job-desc { font-size: 7.5pt !important; color: #444 !important; line-height: 1.45 !important; }
+      .job-tags { display: none !important; }
+
+      /* Ocultar experiencias más antiguas para que quepa en 1 página */
+      /* Mantenemos los 7 más relevantes */
+      #experiencia .job:nth-child(n+8) { display: none !important; }
+
+      /* Docencia compacta */
+      #docencia .job-desc { display: none !important; }
+      #docencia .job { padding: 5px 0 5px 14px !important; }
     }
 
-    @media(max-width:768px){
-      main{grid-template-columns:1fr;}
-      .primary{border-right:none;}
-      .header-inner{grid-template-columns:1fr;}
-      .photo-wrap{display:none;}
-      section,aside{padding:28px 20px;}
-      header{padding:40px 0 0;}
-      footer{flex-direction:column;gap:8px;text-align:center;}
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      main { grid-template-columns: 1fr; }
+      .primary { border-right: none; }
+      .header-inner { grid-template-columns: 1fr; }
+      .photo-wrap { display: none; }
+      section, aside { padding: 26px 18px; }
+      header { padding: 36px 0 0; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
     }
-    ::-webkit-scrollbar{width:4px;height:4px;}
-    ::-webkit-scrollbar-track{background:var(--bg);}
-    ::-webkit-scrollbar-thumb{background:var(--border);}
-    ::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   </style>
 </head>
 <body>
@@ -231,7 +484,6 @@
 <main>
 <div class="primary">
 
-  <!-- ABOUT -->
   <section id="sobre-mi">
     <div class="section-label">01 // <span data-i18n="sec_profile">Perfil</span></div>
     <h2 data-i18n="sec_about">Sobre mí</h2>
@@ -240,6 +492,7 @@
     <div class="expertise-chips">
       <span class="chip geo">Geodesia &amp; Topografía</span><span class="chip geo">Tomografía ERT</span>
       <span class="chip geo">Gravimetría</span><span class="chip geo">Magnetometría</span><span class="chip geo">Sísmica</span>
+      <span class="chip geo">Geotermia</span>
       <span class="chip">Sensores Remotos</span><span class="chip">RADAR &amp; LiDAR</span>
       <span class="chip">Machine Learning ArcGIS</span><span class="chip">Big Data Espacial</span>
       <span class="chip">Bases de Datos Espaciales</span><span class="chip">Desarrollo Web GIS</span>
@@ -247,7 +500,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experiencia">
     <div class="section-label">02 // <span data-i18n="sec_traj">Trayectoria</span></div>
     <h2 data-i18n="sec_exp">Experiencia Laboral</h2>
@@ -256,91 +508,90 @@
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j1_title">PhD Researcher — Geotecnologías</span><span class="job-period" data-i18n="j1_period">Jun 2024 — presente</span></div>
         <div class="job-company">Universidad de Salamanca · Ávila, Castilla y León, España</div>
-        <p class="job-desc" data-i18n="j1_desc">Investigación doctoral en Geotecnologías con énfasis en Geofísica y Geotermia. Trabajo de campo y análisis avanzado de datos geofísicos en el contexto de tecnologías aplicadas al territorio.</p>
+        <p class="job-desc" data-i18n="j1_desc">Investigación doctoral en Geotecnologías con énfasis en geofísica aplicada y recursos geotérmicos. Trabajo de campo y análisis avanzado de datos geofísicos en el contexto de tecnologías aplicadas al territorio.</p>
         <div class="job-tags"><span class="job-tag">Geofísica</span><span class="job-tag">Geotermia</span><span class="job-tag" data-i18n="tag_research">Investigación</span><span class="job-tag">Geotecnologías</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j2_title">Especialista Técnico — Área de Formación</span><span class="job-period">Sep 2023 — Mar 2024</span></div>
         <div class="job-company">Esri España · Madrid, España</div>
-        <p class="job-desc" data-i18n="j2_desc">Especialista técnico en el área de formación de Esri España, apoyando la capacitación en tecnologías ArcGIS y soluciones geoespaciales para clientes y equipos en España.</p>
+        <p class="job-desc" data-i18n="j2_desc">Especialista técnico en formación, apoyando la capacitación en tecnologías ArcGIS y soluciones geoespaciales para clientes y equipos en España.</p>
         <div class="job-tags"><span class="job-tag">ArcGIS</span><span class="job-tag" data-i18n="tag_training">Formación</span><span class="job-tag" data-i18n="tag_consult">Consultoría</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j3_title">Consultor y Desarrollador GIS</span><span class="job-period">Mar 2017 — Jul 2023</span></div>
         <div class="job-company">Esri Colombia · Colombia</div>
-        <p class="job-desc" data-i18n="j3_desc">Procesamiento y análisis de datos geográficos, sensores remotos y teledetección. Desarrollo de aplicaciones web GIS, analítica de datos espaciales, automatización de geoprocesos y machine learning con plataforma ArcGIS.</p>
+        <p class="job-desc" data-i18n="j3_desc">Procesamiento y análisis de datos geográficos, sensores remotos y teledetección. Desarrollo de aplicaciones web GIS, analítica espacial, automatización de geoprocesos y machine learning con ArcGIS.</p>
         <div class="job-tags"><span class="job-tag">ArcGIS</span><span class="job-tag">Python</span><span class="job-tag">Machine Learning</span><span class="job-tag">Web Apps</span><span class="job-tag">Sensores Remotos</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j4_title">Investigador — Geodesta y Geofísico</span><span class="job-period">2016</span></div>
         <div class="job-company">Universidad Nacional · Facultad de Ingeniería Bogotá</div>
-        <p class="job-desc" data-i18n="j4_desc">Evaluación estructural de viviendas en área de operaciones mineras ARGOS. Procesamiento de datos geofísicos, GPS, sensores remotos y análisis espacial.</p>
+        <p class="job-desc" data-i18n="j4_desc">Evaluación estructural de viviendas en área de operaciones mineras ARGOS. Procesamiento de datos geofísicos, GPS y sensores remotos.</p>
         <div class="job-tags"><span class="job-tag">GPS</span><span class="job-tag">Geofísica</span><span class="job-tag">Radar</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j5_title">Ingeniero de Desarrollo e Investigación</span><span class="job-period">Feb 2016 — Ago 2017</span></div>
         <div class="job-company">Universidad Militar Nueva Granada · Bogotá D.C., Colombia</div>
-        <p class="job-desc" data-i18n="j5_desc">Análisis de datos, desarrollo de aplicaciones y estadística espacial. Investigación aplicada en biocombustibles (caso: Copaiba) — modelamiento en MATLAB y Python, análisis físico-químico y geoespacial.</p>
-        <div class="job-tags"><span class="job-tag" data-i18n="tag_dataanalysis">Análisis de Datos</span><span class="job-tag">App Development</span><span class="job-tag">Python</span></div>
+        <p class="job-desc" data-i18n="j5_desc">Análisis de datos, desarrollo de aplicaciones y estadística espacial. Investigación en biocombustibles (Copaiba) — modelamiento en MATLAB y Python.</p>
+        <div class="job-tags"><span class="job-tag" data-i18n="tag_dataanalysis">Análisis de Datos</span><span class="job-tag">Python</span><span class="job-tag">MATLAB</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j6_title">Investigador Asociado</span><span class="job-period">2015 — 2016</span></div>
         <div class="job-company">Universidad Nacional · IDEA Manizales / UCALDAS · CERES</div>
-        <p class="job-desc" data-i18n="j6_desc">Análisis multitemporal del cambio de uso y cobertura del suelo en la zona de influencia del PNN Los Nevados. Procesamiento de imágenes satelitales, radar y análisis geoestadístico.</p>
-        <div class="job-tags"><span class="job-tag">Multitemporal</span><span class="job-tag">Geoestadística</span><span class="job-tag">Cobertura Suelo</span></div>
+        <p class="job-desc" data-i18n="j6_desc">Análisis multitemporal del cambio de uso y cobertura del suelo, PNN Los Nevados. Procesamiento de imágenes satelitales, radar y análisis geoestadístico.</p>
+        <div class="job-tags"><span class="job-tag">Multitemporal</span><span class="job-tag">Geoestadística</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j7_title">Coordinador SIT — Geodesta y Geofísico</span><span class="job-period">2014 — 2015</span></div>
         <div class="job-company">Universidad de Caldas · Doctorado Estudios Territoriales</div>
-        <p class="job-desc" data-i18n="j7_desc">Dirección del Sistema Integrado de Análisis Territorial. Elaboración del SIG institucional, análisis espacial, geoestadístico, econométrico y de sintaxis. Gestión de bases de datos espaciales.</p>
-        <div class="job-tags"><span class="job-tag">SIG</span><span class="job-tag">PostGIS</span><span class="job-tag">Econometría Espacial</span></div>
+        <p class="job-desc" data-i18n="j7_desc">Dirección del Sistema Integrado de Análisis Territorial. Elaboración del SIG institucional, análisis espacial, geoestadístico y econométrico.</p>
+        <div class="job-tags"><span class="job-tag">SIG</span><span class="job-tag">PostGIS</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j8_title">Geofísico — Investigación Recursos Minerales</span><span class="job-period">2013 — 2014</span></div>
         <div class="job-company">Servicio Geológico Colombiano</div>
-        <p class="job-desc" data-i18n="j8_desc">Levantamiento aerogeofísico para Colombia. Procesamiento y análisis de datos de gravimetría, geodesia, magnetometría, sísmica y sismología. Elaboración SIG y bases de datos espaciales.</p>
-        <div class="job-tags"><span class="job-tag">Aerogeofísica</span><span class="job-tag">Gravimetría</span><span class="job-tag">Magnetometría</span><span class="job-tag">Sísmica</span></div>
+        <p class="job-desc" data-i18n="j8_desc">Levantamiento aerogeofísico para Colombia. Procesamiento de datos de gravimetría, magnetometría, sísmica y sismología.</p>
+        <div class="job-tags"><span class="job-tag">Aerogeofísica</span><span class="job-tag">Gravimetría</span><span class="job-tag">Magnetometría</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j9_title">Geofísico — Margen Caribe Colombia</span><span class="job-period">2012</span></div>
         <div class="job-company">UNAL Geociencias · Université de Nice-Sophia Antipolis</div>
-        <p class="job-desc" data-i18n="j9_desc">Proyecto de investigación sobre el Margen Caribe colombiano. Procesamiento y análisis de datos gravimétricos, geodésicos, magnetométricos y sísmicos.</p>
+        <p class="job-desc" data-i18n="j9_desc">Investigación sobre el Margen Caribe colombiano. Procesamiento de datos gravimétricos, geodésicos, magnetométricos y sísmicos.</p>
         <div class="job-tags"><span class="job-tag">Geofísica Marina</span><span class="job-tag">Sísmica</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j10_title">Técnico Geofísico — Freelance</span><span class="job-period">Jul 2011 — Dic 2017</span></div>
         <div class="job-company">G&amp;G Soluciones S.A.S. · Freelance</div>
-        <p class="job-desc" data-i18n="j10_desc">Generación de modelos hidrogeológicos y análisis de cuencas. Proyectos de minería y EIA (SALTARIN, LLANOS 13, CPO 16, entre otros). Interpretación de tomografía geoeléctrica ERT, magnetometría y modelamiento con Eagle Point.</p>
-        <div class="job-tags"><span class="job-tag">Modelos Hidrogeológicos</span><span class="job-tag">Tomografía ERT</span><span class="job-tag">Magnetometría</span><span class="job-tag">EIA</span></div>
+        <p class="job-desc" data-i18n="j10_desc">Modelos hidrogeológicos y análisis de cuencas. Proyectos de minería y EIA. Tomografía ERT, magnetometría y modelamiento con Eagle Point.</p>
+        <div class="job-tags"><span class="job-tag">Tomografía ERT</span><span class="job-tag">Magnetometría</span><span class="job-tag">EIA</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j11_title">Ingeniero Catastral y Geodesta</span><span class="job-period">2010 — 2011</span></div>
         <div class="job-company">INGEPAVI LTDA · Acueducto y Alcantarillado</div>
-        <p class="job-desc" data-i18n="j11_desc">Estudios y diseños para sistemas de agua potable y alcantarillado en Huila. Cartografía, catastro de redes y bases de datos espaciales.</p>
-        <div class="job-tags"><span class="job-tag" data-i18n="tag_cadastre">Catastro Redes</span><span class="job-tag">Imágenes Satelitales</span></div>
+        <p class="job-desc" data-i18n="j11_desc">Diseños para sistemas de agua potable y alcantarillado, Huila. Cartografía y catastro de redes.</p>
+        <div class="job-tags"><span class="job-tag" data-i18n="tag_cadastre">Catastro Redes</span></div>
       </div>
 
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="j12_title">Ingeniero Catastral y Geodesta</span><span class="job-period">2010</span></div>
         <div class="job-company">PROCALCULO PROSIS · Sensores Remotos y SIG</div>
-        <p class="job-desc" data-i18n="j12_desc">Procesamiento de imágenes satelitales y radar, desarrollo de herramientas web con ArcGIS API, bases de datos espaciales y consultoría SIG.</p>
+        <p class="job-desc" data-i18n="j12_desc">Procesamiento de imágenes satelitales y radar, desarrollo web con ArcGIS API y consultoría SIG.</p>
         <div class="job-tags"><span class="job-tag">ArcGIS API</span><span class="job-tag" data-i18n="tag_consult">Consultoría</span></div>
       </div>
 
     </div>
   </section>
 
-  <!-- TEACHING -->
   <section id="docencia">
     <div class="section-label">03 // <span data-i18n="sec_teach_label">Enseñanza</span></div>
     <h2 data-i18n="sec_teaching">Experiencia Docente</h2>
@@ -357,7 +608,7 @@
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="t3_title">Docente — Geodesia (Física, Geométrica, Satelital y Topografía)</span><span class="job-period">2013</span></div>
         <div class="job-company">U. Distrital Francisco José de Caldas · ICG &amp; Ing. Topográfica</div>
-        <p class="job-desc" data-i18n="t3_desc">Clases en Ingeniería Catastral y Geodesia e Ingeniería Topográfica, incluyendo Geoestadística, Sensores Remotos y Análisis de Datos Geofísicos.</p>
+        <p class="job-desc" data-i18n="t3_desc">Geoestadística, Sensores Remotos y Análisis de Datos Geofísicos.</p>
       </div>
       <div class="job">
         <div class="job-header"><span class="job-title" data-i18n="t4_title">Auxiliar Docente — Geodesia y Cartografía</span><span class="job-period">2007 — 2009</span></div>
@@ -369,7 +620,6 @@
 
 </div><!-- /primary -->
 
-<!-- SIDEBAR -->
 <div class="sidebar">
 
   <aside id="educacion">
@@ -448,13 +698,13 @@
     <h2 data-i18n="sec_certs">Licencias &amp; Certificaciones</h2>
     <div class="award-item">
       <div class="award-title">Gravity and Magnetics Workshop</div>
-      <div class="award-detail">Seequent Learning Centre · <span data-i18n="issued">Emitido</span> Ago 2025 · ID: 258744172</div>
+      <div class="award-detail">Seequent Learning Centre · <span data-i18n="issued">Emitido</span> Ago 2025</div>
     </div>
     <div class="award-item">
       <div class="award-title">SQL for Data Science — Oracle, MySQL, R &amp; Python</div>
       <div class="award-detail">Udemy · <span data-i18n="issued">Emitido</span> Abr 2021</div>
     </div>
-    <div class="award-item" style="color:var(--text-dim);font-size:10px;padding-top:8px;">
+    <div class="award-item" style="color:var(--text-dim);font-size:11px;padding-top:6px;">
       + 2 <span data-i18n="more_certs">certificaciones adicionales en LinkedIn</span>
     </div>
   </aside>
@@ -470,10 +720,10 @@
   <aside id="reconocimientos">
     <div class="section-label">08 // <span data-i18n="sec_ach_label">Logros</span></div>
     <h2 data-i18n="sec_awards">Reconocimientos</h2>
-    <div class="award-item"><div class="award-title" data-i18n="aw1_title">Tesis Meritoria</div><div class="award-detail">MSc TIG · Universidad de Manizales · 2019</div></div>
-    <div class="award-item"><div class="award-title" data-i18n="aw2_title">2.º Lugar — NASA Space Apps Challenge</div><div class="award-detail">Hackathon · Bogotá, Colombia · 2016</div></div>
+    <div class="award-item"><div class="award-title" data-i18n="aw1_title">Tesis Meritoria</div><div class="award-detail">MSc TIG · U. Manizales · 2019</div></div>
+    <div class="award-item"><div class="award-title" data-i18n="aw2_title">2.º Lugar — NASA Space Apps Challenge</div><div class="award-detail">Hackathon · Bogotá · 2016</div></div>
     <div class="award-item"><div class="award-title" data-i18n="aw3_title">Beca Postgrado</div><div class="award-detail" data-i18n="aw3_detail">Mejor promedio · MSc Geofísica, UNAL · 2012–2013</div></div>
-    <div class="award-item"><div class="award-title" data-i18n="aw4_title">Tesis Meritoria</div><div class="award-detail">Ing. Catastral y Geodesia · U. Distrital · 2011</div></div>
+    <div class="award-item"><div class="award-title" data-i18n="aw4_title">Tesis Meritoria</div><div class="award-detail">Ing. Catastral · U. Distrital · 2011</div></div>
     <div class="award-item"><div class="award-title" data-i18n="aw5_title">Mención de Honor</div><div class="award-detail" data-i18n="aw5_detail">Mejor promedio 6.º semestre ICG · 2007</div></div>
   </aside>
 
@@ -512,39 +762,39 @@ const i18n = {
     badge_eng:'Ing. Catastral y Geodesta', contact_btn:'→ Contáctame',
     nav_about:'Sobre mí', nav_exp:'Experiencia', nav_teaching:'Docencia', nav_edu:'Educación', nav_skills:'Habilidades', nav_awards:'Reconocimientos',
     sec_profile:'Perfil', sec_about:'Sobre mí',
-    about_p1:'Ingeniero Catastral y Geodesta con Maestría en Geofísica (UNAL) y Maestría en Tecnologías de la Información Geográfica (U. Manizales). Actualmente cursando doctorado en Geotecnologías en la Universidad de Salamanca. Amplia trayectoria en análisis e interpretación de datos geoespaciales, procesamiento de sensores remotos, geofísica de campo y desarrollo de aplicaciones SIG multiplataforma.',
-    about_p2:'Experiencia consolidada en el sector de Tecnologías de la Información aplicadas a Geociencias, con roles de consultoría, investigación y docencia. Capacidad de liderazgo técnico y excelentes habilidades interpersonales para la dirección de equipos multidisciplinarios.',
+    about_p1:'Geofísico e Ingeniero Catastral y Geodesta con Maestría en Geofísica (UNAL) y Maestría en Tecnologías de la Información Geográfica (U. Manizales). Doctorando en Geotecnologías en la Universidad de Salamanca, con investigación enfocada en geofísica aplicada y recursos geotérmicos. Más de 15 años de experiencia en adquisición, procesamiento e interpretación de datos geofísicos — gravimetría, magnetometría, tomografía eléctrica (ERT), sísmica y magnetotelúrica — tanto en contextos de exploración como de evaluación ambiental.',
+    about_p2:'Perfil transversal que integra la geofísica de campo con el análisis geoespacial avanzado: desarrollo de aplicaciones SIG, procesamiento de sensores remotos (SAR, LiDAR, imágenes multiespectrales) y modelamiento de datos en Python, R y MATLAB. Experiencia en consultoría, investigación académica y docencia universitaria, con capacidad para liderar equipos técnicos multidisciplinarios.',
     sec_traj:'Trayectoria', sec_exp:'Experiencia Laboral',
     j1_title:'PhD Researcher — Geotecnologías', j1_period:'Jun 2024 — presente',
-    j1_desc:'Investigación doctoral en Geotecnologías con énfasis en Geofísica y Geotermia. Trabajo de campo y análisis avanzado de datos geofísicos en el contexto de tecnologías aplicadas al territorio.',
+    j1_desc:'Investigación doctoral en Geotecnologías con énfasis en geofísica aplicada y recursos geotérmicos. Trabajo de campo y análisis avanzado de datos geofísicos en el contexto de tecnologías aplicadas al territorio.',
     j2_title:'Especialista Técnico — Área de Formación',
-    j2_desc:'Especialista técnico en el área de formación de Esri España, apoyando la capacitación en tecnologías ArcGIS y soluciones geoespaciales para clientes y equipos en España.',
+    j2_desc:'Especialista técnico en formación, apoyando la capacitación en tecnologías ArcGIS y soluciones geoespaciales para clientes y equipos en España.',
     j3_title:'Consultor y Desarrollador GIS',
-    j3_desc:'Procesamiento y análisis de datos geográficos, sensores remotos y teledetección. Desarrollo de aplicaciones web GIS, analítica de datos espaciales, automatización de geoprocesos y machine learning con plataforma ArcGIS.',
+    j3_desc:'Procesamiento y análisis de datos geográficos, sensores remotos y teledetección. Desarrollo de aplicaciones web GIS, analítica espacial, automatización de geoprocesos y machine learning con ArcGIS.',
     j4_title:'Investigador — Geodesta y Geofísico',
-    j4_desc:'Evaluación estructural de viviendas en área de operaciones mineras ARGOS. Procesamiento de datos geofísicos, GPS, sensores remotos y análisis espacial.',
+    j4_desc:'Evaluación estructural de viviendas en área de operaciones mineras ARGOS. Procesamiento de datos geofísicos, GPS y sensores remotos.',
     j5_title:'Ingeniero de Desarrollo e Investigación',
-    j5_desc:'Análisis de datos, desarrollo de aplicaciones y estadística espacial. Investigación aplicada en biocombustibles (caso: Copaiba) — modelamiento en MATLAB y Python, análisis físico-químico y geoespacial.',
+    j5_desc:'Análisis de datos, desarrollo de aplicaciones y estadística espacial. Investigación en biocombustibles (Copaiba) — modelamiento en MATLAB y Python.',
     j6_title:'Investigador Asociado',
-    j6_desc:'Análisis multitemporal del cambio de uso y cobertura del suelo en la zona de influencia del PNN Los Nevados. Procesamiento de imágenes satelitales, radar y análisis geoestadístico.',
+    j6_desc:'Análisis multitemporal del cambio de uso y cobertura del suelo, PNN Los Nevados. Procesamiento de imágenes satelitales, radar y análisis geoestadístico.',
     j7_title:'Coordinador SIT — Geodesta y Geofísico',
-    j7_desc:'Dirección del Sistema Integrado de Análisis Territorial. Elaboración del SIG institucional, análisis espacial, geoestadístico, econométrico y de sintaxis. Gestión de bases de datos espaciales.',
+    j7_desc:'Dirección del Sistema Integrado de Análisis Territorial. SIG institucional, análisis espacial, geoestadístico y econométrico.',
     j8_title:'Geofísico — Investigación Recursos Minerales',
-    j8_desc:'Levantamiento aerogeofísico para Colombia. Procesamiento y análisis de datos de gravimetría, geodesia, magnetometría, sísmica y sismología. Elaboración SIG y bases de datos espaciales.',
+    j8_desc:'Levantamiento aerogeofísico para Colombia. Procesamiento de datos de gravimetría, magnetometría y sísmica.',
     j9_title:'Geofísico — Margen Caribe Colombia',
-    j9_desc:'Proyecto de investigación sobre el Margen Caribe colombiano. Procesamiento y análisis de datos gravimétricos, geodésicos, magnetométricos y sísmicos.',
+    j9_desc:'Investigación sobre el Margen Caribe colombiano. Procesamiento de datos gravimétricos, geodésicos, magnetométricos y sísmicos.',
     j10_title:'Técnico Geofísico — Freelance',
-    j10_desc:'Generación de modelos hidrogeológicos y análisis de cuencas. Proyectos de minería y EIA (SALTARIN, LLANOS 13, CPO 16, entre otros). Interpretación de tomografía geoeléctrica ERT, magnetometría y modelamiento con Eagle Point.',
+    j10_desc:'Modelos hidrogeológicos y análisis de cuencas. Proyectos de minería y EIA. Tomografía ERT, magnetometría y modelamiento con Eagle Point.',
     j11_title:'Ingeniero Catastral y Geodesta',
-    j11_desc:'Estudios y diseños para sistemas de agua potable y alcantarillado en Huila. Cartografía, catastro de redes y bases de datos espaciales.',
+    j11_desc:'Diseños para sistemas de agua potable y alcantarillado, Huila. Cartografía y catastro de redes.',
     j12_title:'Ingeniero Catastral y Geodesta',
-    j12_desc:'Procesamiento de imágenes satelitales y radar, desarrollo de herramientas web con ArcGIS API, bases de datos espaciales y consultoría SIG.',
+    j12_desc:'Procesamiento de imágenes satelitales y radar, desarrollo web con ArcGIS API y consultoría SIG.',
     sec_teach_label:'Enseñanza', sec_teaching:'Experiencia Docente',
     t1_title:'Docente — Geodesia, Geoestadística, SIG y Sensores Remotos', t1_dept:'Tecnología en Cartografía',
     t2_title:'Docente Extensión — Sensores Remotos y SIG', t2_dept:'Doctorado en Estudios Territoriales',
     t2_desc:'Curso: Uso y Gestión del Suelo Rururbano a Través de Sensores Remotos.',
     t3_title:'Docente — Geodesia (Física, Geométrica, Satelital y Topografía)',
-    t3_desc:'Clases en Ingeniería Catastral y Geodesia e Ingeniería Topográfica, incluyendo Geoestadística, Sensores Remotos y Análisis de Datos Geofísicos.',
+    t3_desc:'Geoestadística, Sensores Remotos y Análisis de Datos Geofísicos.',
     t4_title:'Auxiliar Docente — Geodesia y Cartografía',
     t4_desc:'Ajustes Geodésicos, Geodesia Física, Cartografía y Procesamiento Digital de Imágenes.',
     sec_form:'Formación', sec_edu:'Educación',
@@ -574,39 +824,39 @@ const i18n = {
     badge_eng:'Cadastral & Geodetic Engineer', contact_btn:'→ Contact me',
     nav_about:'About', nav_exp:'Experience', nav_teaching:'Teaching', nav_edu:'Education', nav_skills:'Skills', nav_awards:'Awards',
     sec_profile:'Profile', sec_about:'About me',
-    about_p1:'Cadastral and Geodetic Engineer with a Master\'s in Geophysics (UNAL) and a Master\'s in Geographic Information Technologies (U. Manizales). Currently pursuing a PhD in Geotechnologies at the University of Salamanca. Extensive background in geospatial data analysis and interpretation, remote sensing processing, field geophysics, and cross-platform GIS application development.',
-    about_p2:'Consolidated experience in Information Technologies applied to Geosciences, with roles in consulting, research, and teaching. Strong technical leadership capabilities and excellent interpersonal skills for directing multidisciplinary teams.',
+    about_p1:'Geophysicist and Cadastral & Geodetic Engineer with a Master\'s in Geophysics (UNAL) and a Master\'s in Geographic Information Technologies (U. Manizales). Currently pursuing a PhD in Geotechnologies at the University of Salamanca, with research focused on applied geophysics and geothermal resources. Over 15 years of experience in acquisition, processing, and interpretation of geophysical data — gravimetry, magnetometry, electrical resistivity tomography (ERT), seismics, and magnetotellurics — in both exploration and environmental assessment contexts.',
+    about_p2:'Transversal profile integrating field geophysics with advanced geospatial analysis: GIS application development, remote sensing processing (SAR, LiDAR, multispectral imagery), and data modeling in Python, R and MATLAB. Experience in consulting, academic research, and university teaching, with the ability to lead multidisciplinary technical teams.',
     sec_traj:'Career', sec_exp:'Work Experience',
     j1_title:'PhD Researcher — Geotechnologies', j1_period:'Jun 2024 — present',
-    j1_desc:'Doctoral research in Geotechnologies with emphasis on Geophysics and Geothermal energy. Field work and advanced geophysical data analysis in the context of territory-applied technologies.',
+    j1_desc:'Doctoral research in Geotechnologies with emphasis on applied geophysics and geothermal resources. Field work and advanced geophysical data analysis applied to territory technologies.',
     j2_title:'Technical Specialist — Training Area',
-    j2_desc:'Technical specialist in the training area at Esri España, supporting ArcGIS technology training and geospatial solutions for clients and teams across Spain.',
+    j2_desc:'Technical specialist in training, supporting ArcGIS technology training and geospatial solutions for clients and teams across Spain.',
     j3_title:'GIS Consultant & Developer',
-    j3_desc:'Processing and analysis of geographic data, remote sensing, and Earth observation. Development of web GIS applications, spatial data analytics, geoprocessing automation, and machine learning with the ArcGIS platform.',
+    j3_desc:'Processing and analysis of geographic data, remote sensing, and Earth observation. Web GIS applications, spatial analytics, geoprocessing automation, and machine learning with ArcGIS.',
     j4_title:'Researcher — Geodesist & Geophysicist',
-    j4_desc:'Structural assessment of homes in the ARGOS mining operations area. Processing of geophysical data, GPS, remote sensing, and spatial analysis.',
+    j4_desc:'Structural assessment of homes in ARGOS mining operations area. Processing of geophysical data, GPS, and remote sensing.',
     j5_title:'Development & Research Engineer',
-    j5_desc:'Data analysis, application development, and spatial statistics. Applied research in biofuels (Copaiba case study) — modeling in MATLAB and Python, physicochemical and geospatial analysis.',
+    j5_desc:'Data analysis, application development, and spatial statistics. Applied research in biofuels (Copaiba case) — modeling in MATLAB and Python.',
     j6_title:'Associate Researcher',
-    j6_desc:'Multi-temporal analysis of land use and land cover change in the Los Nevados National Park area. Processing of satellite and radar imagery and geostatistical analysis.',
+    j6_desc:'Multi-temporal land use and land cover change analysis, Los Nevados National Park. Satellite and radar imagery processing and geostatistical analysis.',
     j7_title:'Territorial Analysis System Coordinator',
-    j7_desc:'Direction of the Integrated Territorial Analysis System. Development of the institutional GIS, spatial, geostatistical, econometric, and syntactical analysis. Spatial database management.',
+    j7_desc:'Direction of the Integrated Territorial Analysis System. GIS development, spatial, geostatistical, and econometric analysis.',
     j8_title:'Geophysicist — Mineral Resources Research',
-    j8_desc:'Airborne geophysical survey for Colombia. Processing and analysis of gravimetry, geodesy, magnetometry, seismics, and seismology data. GIS development and spatial databases.',
+    j8_desc:'Airborne geophysical survey for Colombia. Processing of gravimetry, magnetometry, and seismics data.',
     j9_title:'Geophysicist — Caribbean Margin Colombia',
-    j9_desc:'Research project on the Colombian Caribbean Margin. Processing and analysis of gravimetric, geodetic, magnetometric, and seismic data.',
+    j9_desc:'Research on the Colombian Caribbean Margin. Processing of gravimetric, geodetic, magnetometric, and seismic data.',
     j10_title:'Geophysical Technician — Freelance',
-    j10_desc:'Generation of hydrogeological models and basin analysis. Mining and EIA projects (SALTARIN, LLANOS 13, CPO 16, among others). ERT geoelectric tomography interpretation, magnetometry, and Eagle Point modeling.',
+    j10_desc:'Hydrogeological models and basin analysis. Mining and EIA projects. ERT tomography, magnetometry, and Eagle Point modeling.',
     j11_title:'Cadastral & Geodetic Engineer',
-    j11_desc:'Studies and designs for drinking water and sewage systems in Huila. Cartography, network cadastre, and spatial databases.',
+    j11_desc:'Designs for drinking water and sewage systems, Huila. Cartography and network cadastre.',
     j12_title:'Cadastral & Geodetic Engineer',
-    j12_desc:'Processing of satellite and radar imagery, web tool development with ArcGIS API, spatial databases, and GIS consulting.',
+    j12_desc:'Satellite and radar imagery processing, web development with ArcGIS API, and GIS consulting.',
     sec_teach_label:'Teaching', sec_teaching:'Teaching Experience',
     t1_title:'Lecturer — Geodesy, Geostatistics, GIS & Remote Sensing', t1_dept:'Cartography Technology Program',
     t2_title:'Extension Lecturer — Remote Sensing & GIS', t2_dept:'PhD in Territorial Studies',
     t2_desc:'Course: Land Use and Management of Rur-Urban Areas Through Remote Sensing.',
     t3_title:'Lecturer — Geodesy (Physical, Geometric, Satellite & Topography)',
-    t3_desc:'Classes in Cadastral & Geodetic Engineering and Topographic Engineering, including Geostatistics, Remote Sensing, and Geophysical Data Analysis.',
+    t3_desc:'Geostatistics, Remote Sensing, and Geophysical Data Analysis.',
     t4_title:'Teaching Assistant — Geodesy & Cartography',
     t4_desc:'Geodetic Adjustments, Physical Geodesy, Cartography, and Digital Image Processing.',
     sec_form:'Academic Background', sec_edu:'Education',
@@ -648,9 +898,7 @@ function setLang(lang) {
 
 function downloadPDF() {
   const orig = document.title;
-  document.title = currentLang === 'es'
-    ? 'Sergio_Camargo_Vargas_CV_ES'
-    : 'Sergio_Camargo_Vargas_CV_EN';
+  document.title = currentLang === 'es' ? 'Sergio_Camargo_Vargas_CV_ES' : 'Sergio_Camargo_Vargas_CV_EN';
   window.print();
   document.title = orig;
 }
@@ -671,8 +919,8 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.05 });
 document.querySelectorAll('.job, .edu-item, .award-item').forEach(el => {
-  el.style.opacity='0'; el.style.transform='translateY(12px)';
-  el.style.transition='opacity 0.4s ease, transform 0.4s ease';
+  el.style.opacity='0'; el.style.transform='translateY(10px)';
+  el.style.transition='opacity 0.35s ease, transform 0.35s ease';
   observer.observe(el);
 });
 </script>
